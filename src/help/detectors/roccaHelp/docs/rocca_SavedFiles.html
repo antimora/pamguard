@@ -1,0 +1,41 @@
+<html>
+<head>
+<LINK href="../../../pamHelpStylesheet.css" type="text/css"
+	rel="STYLESHEET">
+<title>Rocca Saved File Details</title>
+</head>
+
+<body>
+
+<h1>Rocca</h1>
+<h2>Saved Files</h2><br>
+<p>Rocca saves 3 different files during whistle classification: whistle clip, contour points and contour parameters.  Rocca will also save detection stats automatically every 5 minutes, as well as when the <a href="rocca_Sidebar.html#SaveNow">&lt;Save Detection&gt;</a> button is clicked.</p>
+<p>If a database module is being used, Rocca will also save the data to two tables: Rocca_Whistle_Stats and Rocca_Detection_Stats.</p>
+<br><br>
+<h3><a name="individ">Whistle Clip</a></h3>
+<p>The whistle clip is saved with a wav format to the <a href="rocca_Configure.html#OutputDir">output directory</a>.  The start and end points of the clip are defined by the start and end points originally selected by the user in the spectrogram popup.  The channels saved to the clip file are specified in the <a href="rocca_Configure.html#rocca_SourceTab">Rocca Parameters</a> window.</p>
+<p>The filename is defined by the user in the <a href="rocca_Configure.html#rocca_ParamsFilename">Rocca Parameters</a> window</p>
+<br><br>
+<h3>Contour Points</h3>
+<p>The time/frequency pair for each contour point is saved with a CSV format in the <a href="rocca_Configure.html#OutputDir">output directory</a>.  The duty cycle, the energy in a frequency bin around the peak frequency (as defined in the <a href="rocca_Configure.html#rocca_ParamsClassifier">Rocca Parameters</a> window), and the RMS value of the amplitude are also saved.</p>
+<p>The filename is defined by the user in the <a href="rocca_Configure.html#rocca_ParamsFilename">Rocca Parameters</a> window</p>
+<br><br>
+<h3><a name="contour">Contour Parameters</a></h3>
+<p>The parameters measured from the current contour, as well as the species classification, are saved with a CSV format in the <a href="rocca_Configure.html#OutputDir">output directory</a>.  The information from each classified whistle is appended to the end of the file and the file is never overwritten.  Thus, this file will continue to collect classification information every time Pamguard/Rocca is run.</p>
+<p>Other saved information for each whistle includes the sound source, the date and time, and the detection number.  The end of each row lists the name of the random forest model, the random forest tree votes for each species and a corresponding list of the species names.  The species names were added to each row instead of the header line because the header would be created based on information from the very first whistle contour analyzed only.  If the classification model is changed for subsequent analysis, the species list may be different and no longer match the header.  By including the species list in the row, the user is always able to verify which species were included in the classification algorithm for that particular whistle contour.</p>
+<p>The filename is specified in the <a href="rocca_Configure.html#rocca_ParamsOutput">Rocca Parameters</a> window.</p>
+<p>If a database module is being used, the data will also be saved to the Rocca_Whistle_Stats table.</p>
+<br><br>
+<h3><a name="school">School Stats</a></h3>
+<p>All detection numbers, with the species classification break-down for each, are saved with a CSV format in the  <a href="rocca_Configure.html#OutputDir">output directory</a>.  Also included for each detection number is the cumulative random forest tree vote totals for each species, as well as a species list and the overall school classification (based on the species with the highest cumulative tree vote total).</p>
+<p>Each time the school stats are saved, either through the auto-save function or by the user pressing the <a href="rocca_Sidebar.html#SaveNow">&lt;Save Detection&gt; button</a>, the file is overwritten in order to update any renamed detection numbers.  Since a detection number can be renamed but never deleted, no information will be lost when overwriting an old file during a single Pamguard session.  HOWEVER, if Pamguard is closed and restarted the file will be <strong>overwritten with blank data and all prior information will be lost</strong>.  The file is checked during Pamguard startup, and if it exists the user is given the opportunity to rename it before it is lost, and/or load the existing data back into the system.</p>
+<p>Note that when examining a particular detection number, the user should refer to the species list at the end of the row instead of the species listed in the header.  The header information is taken from the first detection number listed; if subsequent detection numbers use a different classification model, the species may change and this change would not be reflected in the header.</p>
+<p>The filename is specified in the <a href="rocca_Configure.html#rocca_ParamsOutput">Rocca Parameters window</a>.</p>
+<p>If a database module is being used, the data will also be saved to the Rocca_Detection_Stats table.</p>
+<br><br>
+<p></p>
+<p CLASS="prevLink"><a href="rocca_Sidebar.html">Previous:
+Rocca Sidebar</a></p>
+<br><br><br>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<html>
+<head>
+<LINK href="../../../pamHelpStylesheet.css" type="text/css"
+	rel="STYLESHEET">
+<title>Rocca Configuration</title>
+</head>
+
+<body>
+
+<h1>Rocca</h1>
+<h2>Creation and Configuration</h2><br>
+<h3>Creating a Rocca module</h3>
+<p>From the <strong><em>File > Add Modules > Detectors</em></strong> menu, select "Rocca".  Enter a descriptive name for the new classifier and press OK.</p>
+<p>Rocca requires an  <a href="../../../sound_processing/fftManagerHelp/docs/FFTEngine_Overview.html">FFT engine module</a> to operate.  If no FFT engine module has been loaded, the user will be prompted to load one.</p>
+<p>When the module is created, Rocca will automatically try to load the <a href="#rocca_ClassifierModel">classifier model</a>. Rocca will also check to see if the <a href="#rocca_SchoolStatsFile">School Stats file</a> already exists.  If it does, the user is given the option to load the contents of the file into memory.</p>
+<p> <strong>Note:</strong> the School Stats file is continually overwritten while Rocca is running. If, upon startup, the user does not load the data into memory, the information in the file will be lost. Thus if the user does not wish to load the data <em>but</em> still desires to keep it, the file should be renamed before continuing with Pamguard.</p>
+<br><br>
+<h3><a name="rocca_ParamsContour">Configuring a Rocca module</a></h3>
+<p>Note: it is recommended that the <a href="../../../sound_processing/AcquisitionHelp/docs/AcquisitionOverview.html">Sound Acquisition</a> and <a href="../../../sound_processing/fftManagerHelp/docs/FFTEngine_Overview.html">FFT Engine</a> modules be configured before configuring Rocca.</p>
+
+<p>From the Detection menu, select "Rocca Parameters".  A new dialog should appear containing four tabs, <a href="#rocca_ParamsContourTab">Contour</a>, <a href="#rocca_ParamsClassifier">Classifier</a>, <a href="#rocca_ParamsOutput">Output</a>, and <a href="#rocca_ParamsFilename">Filename Template</a>.</p>
+<br>
+<br>
+<h3><a name="rocca_ParamsContourTab">Contour tab</a></h3>
+<img alt="" src="images/rocca_params_contour.png" width="417" height="389">
+<br>
+<ol>
+	<li><p>FFT Data source: the fft data source to be used.  The channels listed are those currently selected in the <a href="../../../sound_processing/fftManagerHelp/docs/FFTEngine_Configuring.html">FFT Parameters dialog</a>.  Rocca will save a wav clip of a whistle contour whenever it is classified and added to the current detection.  Check the channel boxes corresponding to the channels you wish to save to this clip file.  Note that this is different than the channels displayed in the spectrogram window, which are set in the <a href="../../../displays/spectrogramDisplayHelp/docs/UserDisplay_Spectrogram_Configuring.html">display options dialog</a>.  Whistles can be selected and contours extracted from any channel displayed, but the saved whistle clips will only contain data from the channels selected here.  So it is possible (though not recommended) to extract and classify a whistle from Channel 0, but only save the data from Channels 1 and 2.</p></li>
+	<li><p>Noise Sensitivity: specify the global noise sensitivity parameter to use when <a href="rocca_ContourExtractionManipulation.html">extracting a contour</a>.</p></li>
+	<li><p>Energy Bin Calc Size: specify the size of the frequency bin used to calculate the energy around each peak frequency.</p></li>
+</ol>
+
+
+<br>
+<br>
+<h3><a name="rocca_ParamsClassifier">Classifier tab</a></h3>
+<img alt="" src="images/rocca_params_classifier.png" width="414" height="397">
+<br>
+<ol>
+	<li><p><a name="rocca_ClassifierModel">Classifier</a>: select the classifier to be used.  Classifier models are created based on the <a href="http://www.cs.waikato.ac.nz/ml/weka/index.html">Weka</a> Random Forest model.  A classifier model uses the file extension .model.  At the moment the ability to create new classifiers within Pamguard is not available.  For a new classifier based on custom data, please contact Dr. Julie Oswald at oswald.jn@gmail.com</p></li>.
+	<li><p>Whistle Threshold: the threshold value to use when <a href="rocca_WhistleSchoolClassification.html">classifying individual whistles</a></p></li>
+	<li><p>School Threshold: the threshold value to use when <a href="rocca_WhistleSchoolClassification.html#SchoolClassification">classifying detection numbers</a></p></li>
+</ol>
+
+
+<br>
+<br>
+<h3><a name="rocca_ParamsOutput">Output tab</a></h3>
+<img alt="" src="images/rocca_params_output.png" width="413" height="399">
+<br>
+<ol>
+	<li><p><a name="OutputDir">Output Directory</a>: specify the directory to <a href="rocca_SavedFiles.html#individ">save</a> clip files, whistle contour points and whistle contour parameters to.  Note that, with Microsoft Windows operating systems, it is a good idea to select a directory that does not require administrator privileges to save to.</p></li>
+	<li><p><a href="rocca_SavedFiles.html#contour">Contour Stats Save File</a>: specify the name of the file to save classified whistle contour parameters to.  The file will be saved to the output directory, specified above.  Each whistle classified is appended to the end of the file when one of the Save buttons in the Spectrogram Popup window is clicked.</p></li>
+	<li><p><a name="rocca_SchoolStatsFile"></a><a href="rocca_SavedFiles.html#school">School Stats Save File</a>: specify the name of the file to save the school classifications to.  The file will be saved to the output directory, specified above.  Note that in order to use the latest detection numbers, this file is overwritten during each save.  While this is not a problem as long as Pamguard is run continuously, if this file exists when Pamguard is first loaded the contents will be lost.  If the file exists during startup, the user is warned and given a chance to load/rename/backup the existing file.</p></li>
+</ol>
+
+
+<br>
+<br>
+<h3><a name="rocca_ParamsFilename">Filename Template tab</a></h3>
+<img alt="" src="images/rocca_params_filename.png" width="389" height="425">
+<p>In addition to the Contour Stats and School Stats save files, Rocca also saves a whistle clip (wav format) and a list of the contour points (time and frequency, csv format).  These files will be named according to the template given in the text box on this tab.  As part of the name, the user is able to use any of the following symbols.  When the files are saved, Rocca will substitute the actual values for the symbol names.</p>
+<p>
+<table class="roccaTable" align="center">
+	<th width="90">Symbol</th><th width="150">Meaning</th><th width="50">&nbsp;</th><th width="90">Symbol</th><th width="150">Meaning</th>
+    <tr><td>f</td><td>name of source</td><td>&nbsp;</td><td>H</td><td>hour, 24-hour clock</td></tr>
+    <tr><td>n</td><td>detection number</td><td>&nbsp;</td><td>h</td><td>hour, 12-hour clock</td></tr>
+    <tr><td>X</td><td>detection tally/count</td><td>&nbsp;</td><td>a</td><td><em>am</em> or <em>pm</em></td></tr>
+    <tr><td>t</td><td>channel/track number</td><td>&nbsp;</td><td>m</td><td>minute</td></tr>
+    <tr><td>Y</td><td>year, 4 digits</td><td>&nbsp;</td><td>s</td><td>second</td></tr>
+    <tr><td>y</td><td>year, 2 digits</td><td>&nbsp;</td><td>S</td><td>second of the day, 5 digits</td></tr>
+    <tr><td>M</td><td>month</td><td>&nbsp;</td><td>d</td><td>tenths of a second</td></tr>
+    <tr><td>D</td><td>day of the month</td><td>&nbsp;</td><td>c</td><td>hundredths of a second</td></tr>
+    <tr><td>J</td><td>day of the year, 3 digits</td><td>&nbsp;</td><td>i</td><td>thousandths of a second</td></tr>
+</table>
+</p>
+<p>Note that all date/time values are GMT.</p>
+<br>
+
+
+
+<br><br>
+<h3>Rocca Mark Observers</h3>
+<p>Rocca must be added to the <a href="../../../displays/spectrogramDisplayHelp/docs/UserDisplay_Spectrogram_Configuring.html#MarkObservers">Mark Observers</a> list in the spectrogram to be monitored.  Right click on the spectrogram and select Settings.  Select the Mark Observers tab and check the box beside Rocca.  If Rocca is not listed as a possible mark observer, it has not been added as a module.</p>
+
+<br><br>
+<p></p>
+<p CLASS="prevLink"><a href="rocca_Overview.html">Previous:
+Rocca Overview</a></p>
+<p CLASS="nextLink"><a href="rocca_SelectingWhistle.html">Next:
+Selecting a Whistle</a></p>
+
+<br><br><br>
+</body>
+</html>

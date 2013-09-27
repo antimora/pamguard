@@ -1,0 +1,181 @@
+<html>
+<head>
+<LINK href="../../../pamHelpStylesheet.css" type=text/css rel=STYLESHEET>
+<title>Logger forms</title>
+</head>
+
+<body>
+
+<h1>Logger Forms</h1>
+<h2>Overview</h2>
+
+<p>
+This is a temporary guide which explains the current state of Logger Forms module in PAMGuard and how to get it going.
+<p>
+
+<h3>Adding the Logger Forms module</h3>
+<p>
+To add the Logger Forms module a <a href="../../../utilities/generalDatabaseHelp/docs/database_database.html">database module</a> must already be present. You should make sure you have one AND that it is connected to a database.
+<p>
+<p>
+If you do not have one, to add a Database select the <em><strong>File>Add Modules>Utilities>Database</strong></em> menu command, give it a name, then select the <em><strong>File>Database Selection ...</strong></em> and connect to your database.
+<p>
+<p>
+PAMGuard will need write access to the database and may need to modify the design of some ot the tables in the 
+databsae. Generally you can get away with having the database open with other programmes, however, it's best 
+not to open the output tables, since these may need to be modified by PAMGaurd. If you have any difficulties, make
+sure the databse is not open with any other programme. 
+<p>
+To add the Logger Forms module select the <em><strong>File>Add Modules>Visual Methods>Logger Forms</strong></em> menu command and give it a name.
+<p>
+<p>
+For each form you wish to add select the <em><strong>Detection>Logger Forms>Create New Form...</strong></em> menu command and give it a name. This ensures the field names in the database table are created correctly.
+</p>
+<p>
+If you wish to use a database table from a previous Logger Database the are several key changes these are discussed later.
+</p>
+
+<p>
+At this stage it would be useful to save the PAMGuard configuration file. <em><strong>File>Save Configuration</strong></em>. Then exit PAMGuard and open your database editor, for demonstration purposes we will be using Microsoft Access.
+<p>
+
+<h3>Altering the Forms' contents</h3>
+<p>
+Forms control is very similar to the Logger Forms method. But some key differences exist. If you have any problems making old Logger UDF_ tables work compare the "Design View" in detail. Key changes are  an Id has been added field names have had spaces replaced with underscores _ but there may be other subtle changes in number type/not null options etc. Below is a view of the Design of a working UDF_ form.
+<p>
+
+<p><img src="images/10-NoteTheTableStructureIsSimilarButTheSlightDifferencesAreImportant.png" alt="Table Structure Is Similar" /></p>
+
+<p>
+Controls which have been <strong>implemented</strong> in Logger Forms in PAMGuard include
+<p>
+
+<p>
+CHAR
+<br>CHECKBOX
+<br>COUNTER
+<br>DOUBLE
+<br>INTEGER
+<br>LOOKUP *
+<br>SHORT
+<br>SINGLE
+<br>TIME **
+<br>TIMESTAMP
+<br>HSPACE
+<br>NEWLINE
+<br>VSPACE
+<br>NMEACHAR
+<br>NMEAFLOAT
+<br>NMEAINT
+<\p>
+
+
+<p>
+Controls which are <strong>not implemented</strong> in Logger Forms in PAMGuard include
+<\p>
+<p>
+ANALOGUE
+<br>DIGITAL
+<br>STATIC
+<p>
+
+<p>
+<strong>*</strong> The LOOKUP control has been implemented and the 'Topic' field is entered as normal but do not create your own LOOKUP Table as this is done back in the PAMGuard software. 
+<p>
+
+<p>
+<strong>**</strong> Be careful when entering these controls since some database systems will not allow the following names:<br>
+ TIMESTAMP, DATETIME, DATE, TIME. <br></br> 
+ Generally, you can get away with using these with MS Access though. 
+ To prevent this problem occurring, either provide a DBTITLE field entry that does not contain these keywords OR such as TIMESTAMPDB or even TIMESTAMP_DB or if DBTITLE field is blank then make sure the TITLE field follows these rules. 
+<p>
+
+<p>
+The Fields in the database they use are shown below. ALL - implemented controls, ALL EX HVN - ALL but not including HSPACE, VSPACE or NEWLINE /  R - Required, O - Optional
+<p>
+<p><img src="images/12-QuickListOfImplementations.png" alt="Quick List of Database entries" /></p>
+
+<p>
+Here is an simple UDF_ table as an example.
+<p>
+<p><img src="images/11-ControlsAreVerySimilar.png" alt="Simple UDF_ Table Example" /></p>
+<p>
+Note here 255 was too big and was reduced to 32 as scrolling is not yet implemented
+<p>
+
+
+<h3>Altering the Forms' properties</h3>
+
+<p>
+Forms have advanced uses which can be utilised by including some of the following properties. In many cases just having a row in the UDF table with the TYPE set to the property, and obviously an Id, enable the property. AUTOALERT takes a time in minutes in the length field.
+<p>
+
+<p>
+Properties which have been <strong>implemented</strong> in Logger Forms in PAMGuard include
+<p>
+
+<p>
+AUTOALERT			-Length is used as a number of minutes between alerts.
+<br>DBTABLENAME     -Title is used for alternate output database table name
+<br>HIDDEN
+<br>NOCLEAR
+<br>NOCANCEL
+<br>POPUP
+<br>SUBTABS
+<p>
+
+<p>
+Properties which are <strong>part-implemented</strong> in Logger Forms in PAMGuard include
+<p>
+
+<p>
+AUTORECORD
+<br>BEARING
+<br>BLOBSIZE
+<br>HEADING
+<br>PLOT
+<br>RANGE
+<br>READONTIMER
+<br>READONGPS
+<br>SYMBOLTYPE
+<p>
+
+<p>
+Properties which are <strong>not implemented</strong> in Logger Forms in PAMGuard include
+<p>
+
+
+<p>
+FONT
+<br>FORMCOLOUR
+<br>FORMCOLOR
+<br>GPSDATASET
+<br>HOTKEY
+<br>NOTOFFLINE
+<br>NOTONLINE
+<br>NOTSHOWDATA
+<br>SUBFORM
+<p>
+
+
+<h3>Altering the Lookup boxes contents</h3>
+
+<p>
+Logger Forms Utilises a standard user-editable PAMGuard lookup box for which the contents editing has already been built into the software.
+To add contents to this first close the database  and re-open PAMGuard. At this point the forms should appear when the previously loaded configuration file points PAMGuard to the correct database then opens the Logger Forms Module. If You have problems here, make sure the database is loaded then remove and re-add the Logger Forms module.
+  
+<p>
+
+<p>
+If you have Lookup controls on a form, go to that form and right-click the Lookup box and click <em><strong>>Edit list...</strong></em>
+<p>
+
+<p><img src="images/14-EditingLookupContents.png" alt="Editing Lookup Contents" /></p>
+
+<p>
+Here you can see the TOPIC field noted in the title bar as SEA_STATES. Add items as you wish with Code, Text, Selectable and Symbol. Code will be the shortcut able to be entered in the first part of the control and Text is what shows in the drop-down. A Symbol must be entered at the moment though as you can see they can be the same and at the moment only used on map. Eg would be used for a sighting but for SEA_STATES it will be unused.
+<p>
+
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<html>
+<head>
+<LINK href="../../../pamHelpStylesheet.css" type="text/css"
+	rel="STYLESHEET">
+<title>Rocca Spectrogram PopUp Details</title>
+</head>
+
+<body>
+
+<h1>Rocca</h1>
+<h2>Spectrogram Popup Window</h2><br>
+<p>Once a whistle has been selected in the main spectrogram window, a new window opens containing the portion of the spectrogram selected by the user. The user will need to click on the starting point of the whistle, and then the ending point (note that these can be reselected later). Once the starting and ending points have been defined, Rocca will extract and display the whistle contour (shown in yellow).</p>
+<br>
+<img alt="" src="images/popup3.png">
+<ol>
+	<li><p>Window Title: displays the current detection tally.  Rocca keeps track of how many detections have been made since Pamguard has been started and displays the information in the window title to make it easier to keep track of detections during an encounter with multiple acoustic events.</p></li>
+	<li>
+	  <p>Zoom In/Out/Reset: changes the zoom level of the spectrogram.</p></li>
+	<li><p>Increase/Decrease Brightness: modifies the brightness of the spectrogram.  Note that this only modifies the spectrogram display – the underlying contour extraction algorithm is not affected.</p></li>
+	<li><p>Increase/Decrease Contrast: modifies the contrast of the spectrogram.  Note that this only modifies the spectrogram display – the underlying contour extraction algorithm is not affected.</p></li>
+	<li><p>Noise Sensitivity spinner: modifies the noise sensitivity parameter used for <a href="rocca_ContourExtractionManipulation.html">contour extraction</a>.  The contour is automatically recalculated when this value is changed, and the spectrogram display is updated.  Note that any contour points <a href="rocca_ContourExtractionManipulation.html#manual">manually moved</a> will not be changed.  Note also that this does not change the global noise sensitivity parameter as specified in the <a href="rocca_Configure.html#rocca_ParamsContour">Rocca Parameters window</a>, only the noise sensitivity used in this spectrogram popup window.</p></li>
+	<li>
+	  <p>Spectrogram window: the current spectrogram.</p></li>
+	<li>
+	  <p>Select Contour Start/Contour End: allows user to reselect the starting or ending point of the whistle. Upon selection, the contour will recalculated automatically.</p></li>
+	<li><p>Turn Contour Off: toggle the contour display on and off.</p></li>
+	<li><p>Pick Points: when clicked, erases existing contour and enters 'Selection' Mode.  The user is able to manually select points along the contour by clicking on the spectrogram itself.  The user can select any number of points, but only one frequency per time bin is allowed.  If multiple frequencies are selected, only the first is kept and the rest ignored.  The user can also hold the mouse button down and drag the mouse along the contour to quickly select multiple points, but it can be difficult to adequately trace a contour using this method.  When the Pick Points button is pressed a second time, Selection Mode ends.  Rocca will fill in any missing time bins by linear interpolation, and calculate the contour normally.</p></li>
+	<li>
+	  <p><a name="rocca_ResetFilter">Highpass/Lowpass/Reset filters:</a> limits the <a href="rocca_ContourExtractionManipulation.html">contour extraction algorithm</a> to only function within a specific frequency band.  Specify a filter by either typing in the desired frequency and hitting &lt;enter&gt;, or hitting the &lt;Set&gt; button and clicking on the desired frequency in the spectrogram.  The frequency filter is drawn as a horizontal red line on the spectrogram. The contour is automatically recalculated when these values are modified, and the spectrogram display is updated.  Reset the filters by clicking the &lt;Reset Filters&gt; button.  Note that any contour points <a href="rocca_ContourExtractionManipulation.html#manual">manually moved</a> will not be changed.  Note also that the spectrogram display is not affected by the filters, only the contour extraction.</p></li>
+	<li><p>Undo Last Move: return the last contour point that was <a href="rocca_ContourExtractionManipulation.html#manual">moved manually</a> to its previous location.</p></li>
+	<li><p><a name="rocca_RecalcContour">Recalc Contour</a>: recalculate the contour after <a href="rocca_ContourExtractionManipulation.html">manually moving</a> one or more contour points to new positions.</p></li>
+	<li><p><a name="rocca_ResetContour">Reset Contour</a>: unlock all manually moved contour points.</p></li>
+	<li><p>Classify/Reclassify: classify the currently-extracted contour.  The classification is displayed to the left of the button.</p></li>
+	<li><p>Save as detection <em>det#</em>: save the whistle clip, contour points,  and contour parameters to the directory specified in the <a href="rocca_Configure.html#rocca_ParamsContour">Rocca Parameters window</a> using <em>det#</em> as the <a href="rocca_Sidebar.html">detection number</a>.  Close the spectrogram popup window and return to the main Pamguard display.  Classification results will be added to the Rocca <a href="rocca_Sidebar.html">Sidebar</a>.</p></li>
+	<li><p>Save as diff detection: save the whistle clip, contour points, and contour parameters to the directory specified in the <a href="rocca_Configure.html#rocca_ParamsContour">Rocca Parameters window</a>, but first query the user as to which <a href="rocca_Sidebar.html">detection number</a> to use.  Close the spectrogram popup window and return to the main Pamguard display.  Classification results will be added to the Rocca <a href="rocca_Sidebar.html">Sidebar</a>.</p></li>
+	<li><p>Save WAV only: save the whistle clip to the directory specified in the <a href="rocca_Configure.html#rocca_ParamsContour">Rocca Parameters window</a> using the current detection number (shown in the window title bar).  This option is useful if the user wishes to classify the whistle later.</p></li>
+	<li><p>Discard and Exit: discard the current whistle, close the spectrogram popup window and return to the main Pamguard display.</p></li>
+	<li><p>Displays the current time and frequency location of the cursor.</p></li>
+</ol>
+<br><br>
+<p></p>
+<p CLASS="prevLink"><a href="rocca_SelectingWhistle.html">Previous:
+Selecting a Whistle</a></p>
+<p CLASS="nextLink"><a href="rocca_ContourExtractionManipulation.html">Next:
+Contour Extraction / Manipulation</a></p>
+<br><br><br>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<html>
+<head>
+<LINK href="../../../pamHelpStylesheet.css" type="text/css"
+	rel="STYLESHEET">
+<title>Sound Output Configuration</title>
+</head>
+
+<body>
+
+<h1>Sound Output</h1>
+
+
+<h2>Configuration</h2>
+<p>To access the module's settings, select <em><strong>Detection>Sound
+Output... </strong></em> from the main menu . This will bring up the Sound Output
+dialog similar to the one shown below.</p>
+
+<br>
+<center><img alt="Sound Output Dialog" src="Images/SoundOutput.png" /></center>
+<br>
+<br>
+
+<h3>Data Source</h3>
+<p>The sound output module requires a source of raw data before it
+can operate. Select a raw data source from the drop down list.</p>
+<p>Select the data channels. Note that a sound card will only
+be able to play back two channels at a time and you will therefore only
+be able to check one or two boxes.</p>
+
+<h3>Options</h3>
+<p>The available options will depend on the type of sound acquisition
+device.</p>
+
+<h4>Audio files and File Folders</h4>
+<p>Select the output device. This will be a list of sound cards on
+your system.</p>
+<p>Set the sample rate. This can be automatically selected to be the
+same as the sample rate in the data, in which case playback will be real
+time, or you can slow down or speed up playback from a file by entering
+a different sample rate.</p>
+<p><strong>Note:</strong> During file analysis, if no channels are
+selected and there is no playback, analysis will continue at the maximum
+rate possible using all available processor power. If sound playback is
+enabled, then analysis will proceed at the speed governed by the sound
+playback rate. If the processor can't keep up with analysing data at the
+playback rate, then playback will appear interrupted and 'glitchy'</p>
+<p>It is possible to re-configure channels during analysis, so if
+you are analysing a lot of data, you may want to occasionally turn on
+sound output on one or two channels to have a listen, then turn them off
+again so that it processes as fast as possible.</p>
+
+<h4>Sound Cards</h4>
+<p>When real time data re being collected using a sound card, you <strong>must</strong>
+select the same device for sound output as is being used for sound
+input. i.e. you cannot collect real time data through an external USB or
+Firewire sound card and output that sound through your laptops internal
+sound card. If you do, the clocks on the two devices are likely to drift
+apart over time which can make PAMGUARD unstable.</p>
+
+<h4>ASIO Sound Cards</h4>
+<p>When using ASIO sound card input, playback will automatically be through the same 
+device so there are no user options.</p>
+
+<h4>Other devices</h4>
+<p>Other data acquisition devices are currently not supported for sound output</p>
+
+
+<br>
+<p CLASS="prevLink"><a href="soundPlayback_soundPlayback.html">Previous:
+Sound Output Overview</a></p>
+
+<br><br><br>
+</body>
+</html>

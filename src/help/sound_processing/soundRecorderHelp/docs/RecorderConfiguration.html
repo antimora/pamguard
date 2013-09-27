@@ -1,0 +1,79 @@
+<html>
+<head>
+<LINK href="../../../pamHelpStylesheet.css" type=text/css rel=STYLESHEET>
+<title>Sound Recorder Configuration</title>
+<style type="text/css">
+<!--
+.style1 {font-size: 12px}
+-->
+</style>
+</head>
+
+<body>
+
+<h1>Sound Recorder</h1>
+<h2>Configuration</h2>
+<br>
+
+<p>
+The Sound Recorder display configuration dialog is accessed from the 
+Settings button on the recorder display panel or from the
+  <em>  <strong>Detection>Sound Recorder>Recorder Settings</strong></em> menu command. 
+<br>
+<br>
+<img src="images/SoundRecorderSettings.png" alt="Sound Recorder Settings"><br><br>
+
+
+<h3>Raw Data Source</h3>
+<p>Select the data source for the sound recorder. All sources of raw audio data within PAMGUARD
+  will be listed. 
+</p>
+<h3>Recording Options</h3>
+<h4 class="style1">Automatic Restarts</h4>
+<p>Recording will stop whenever PAMGUARD data acquisition is paused or PAMGUARD is closed. Check this box
+  if you want recording to restart in it's previous state (stopped, 
+  automatic cycle or continuous) when PAMGUARD
+  is restarted. 
+</p>
+<h4 class="style1">Enable Buffer</h4>
+<p>Enter the length of the history buffer that will be added to the start of recordings started by
+  pressing the Continuous + Buffer button.  </p>
+<p>
+Note that buffering audio data can take a lot of memory and that writing large data buffers
+at the start of a file can take considerable time, which may make PAMGUARD unstable. Buffers of up to
+a minute in length at sample rates of 100 kHz are generally Ok. 
+
+<h3>Select Output Folder</h3>
+<p>Select the folder that recorded files will be stored in. Note that recordings can 
+  take a considerable amount of space, so it may be worth having a dedicated drive for this 
+  purpose. 
+  
+</p>
+<h3>File Name and Type</h3>
+<p>File names are always based on the current PC clock date (which should have been 
+  <a href="../../../mapping/NMEA/docs/ClockOptions.html">set from the GPS)</a>. You may also enter
+a character string to the start of the file. In the example shown, a recording started at 
+22:51:40 on 12 January 2007 would have the name PAM20070112_225140.wav.
+</p>
+<p>
+WAVE (WAV), AU and AIFF (AIF) formats are currently supported. 
+ 
+<h3>Maximum File Lengths</h3>
+<p>Set the maximum length of single files either as a length in seconds and / or a 
+  size in Megabytes. Although you are likely to store files on hard drives, it is generally
+  sensible to limit the size of single files such that a single file will fit on a writable CD or DVD. 
+  
+</p>
+<h3>Automatic Recordings</h3>
+<p>Set the interval between automatic recordings and the length of automatic recordings
+  in seconds. 
+  
+  <br>
+  <br>
+</p>
+<p CLASS="previousLink"><a href="RecorderOverview.html">Previous: Sound Recorder Overview</a></p>
+<p CLASS="nextLink"><a href="RecorderOperation.html">Next: Sound Recorder Operation</a>
+
+<br><br><br>
+</body>
+</html>

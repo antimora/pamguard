@@ -1,0 +1,96 @@
+<html>
+<head>
+<LINK href="../../../pamHelpStylesheet.css" type=text/css rel=STYLESHEET>
+<title>Sound Acquisition</title>
+</head>
+
+<body>
+
+<h1>Sound Acquisition Configuration</h1>
+<p>
+To access the module's settings, select <em><strong>Detection>Sound Acquisition...
+</strong></em> from the main menu and click on the name of your module. 
+This will bring up an Audio Data Acquisition dialogue similar to the one shown below.</p> 
+<p><center><img alt="Sound Acquisition Dialogue" src="images/AcquisitionDialog.png" /></center></p>
+<br>
+<p>
+The dialog is divided into four separate regions. the information in each region may vary 
+depending on the type of input device you are using.  
+</p>
+
+<h3>Data Source Type</h3>
+<p>
+From the drop down list, select the type of input device you wish to use. 
+Different input devices offer different numbers of channels, sample rates and 
+quality of data. For many applications using just two channels of data in the 
+human audio band, a standard sound card is adequate, but 
+for higher sample rates, or higher numbers of channels, ASIO sound cards or 
+National Instruments Data Acquisition devices may be required
+</p>
+<p>
+Note that not all input types are supported on all platforms.<br>
+</p>
+<table border = "1" cellpadding = "10">
+<tr>
+<td><p>Data Source Type</td><td><p>Windows</td><td><p>Mac</td><td><p>Linux</td><td><p>Restrictions / Notes</td>
+</tr>
+<tr>
+<td><p><a href="AcquisitionSoundCard.html">Sound Card</a></td><td><p>Yes</td><td><p>Yes</p></td><td><p>Yes</td>
+<td><p>Maximum of two channels.<br>Considerable variation in quality between devices</td>
+</tr>
+<tr>
+<td><p><a href="AcquisitionAsioSoundCard.html">ASIO Sound Card</a></td><td><p>Yes</td><td><p>Not yet</td><td><p>No</td>
+<td><p>Some cards allow sampling on > 2 channels</td>
+</tr>
+<tr>
+<td><p><a href="AcquisitionFile.html">Audio File</a></td><td><p>Yes</td><td><p>Yes</td><td><p>Yes</td>
+<td>Analyse archived data. You should consider using 
+<a href="..\..\..\overview\PamMasterHelp\docs\mixedMode.html">Mixed Mode</a> for this 
+if you with to correctly localise sounds relative to GPS data.</td>
+</tr>
+<tr>
+<td><p><a href="AcquisitionFileFolder.html">Audio File folder<br>or multiple files</a></td><td><p>Yes</td><td><p>Yes</td><td><p>Yes</td>
+<td>Batch process many files.</td>
+</tr>
+<tr>
+<td><p><a href="AcquisitionNIDAQ.html">National Instruments DAQ Cards</a></td><td><p>Yes</td><td><p>No</td><td><p>No</td>
+<td><p>Support for multiple channels at high sample rates</td>
+</tr>
+<tr>
+<td><p><a href="AcquisitionSimulator.html">Simulated Sound Sources</a></td><td><p>Yes</td><td><p>Yes</td><td><p>Yes</td>
+<td><p>Simulated sources are useful for training, testing and developing new modules</td>
+</tr>
+</table>
+
+<h3>Select audio line (or specific input device or file)</h3>
+<p>
+The information displayed here will vary depending on the type of Data Source. 
+Please refer to instructions on specific data source configuration.
+</p>
+
+<h3>Sampling</h3>
+<p>
+The information displayed here will vary depending on the type of Data Source. 
+Please refer to instructions on specific data source configuration.
+</p>
+
+<h3>Calibration</h3>
+<p>
+The peak to peak voltage range of the device and the preamplifier gain are used by some PAMGUARD modules to calculate
+absolute received signal levels in dB re. 1&mu Pa. For some devices, this information may be 
+filled in automatically, for others you will need to enter it yourself. If you don't know the 
+input sensitivity of your device, don't worry, PAMGUARD will run, but amplitudes may not be accurate.   
+</p>
+<p>
+The bandwidth information is not currently used anywhere in PAMGUARD.
+</p>
+
+
+
+<br>
+<p CLASS="prevLink"><a href="AcquisitionOverview.html">Previous: Acquisition Overview</a></p>
+<p CLASS="nextLink"><a href="AcquisitionSoundCard.html">Next: Sound Cards</a></p>
+
+<br><br><br>
+</body>
+</html>

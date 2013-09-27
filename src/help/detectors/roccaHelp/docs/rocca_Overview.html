@@ -1,0 +1,35 @@
+<html>
+<head>
+<LINK href="../../../pamHelpStylesheet.css" type="text/css"
+	rel="STYLESHEET">
+<title>Rocca Classifier Overview</title>
+</head>
+
+<body>
+
+<h1>Rocca</h1>
+<h2>Overview</h2><br>
+<p>The ROCCA (Real-time Odontocete Call Classification Algorithm) module classifies delphinid whistles based on spectrographic measurements extracted from whistle contours.  The contour extraction algorithm <a href="rocca_WhistleSchoolClassification.html">measures</a> 54 different variables for each contour.  A subset of these variables is then used in conjunction with a user-selected classification model to classify the whistle to species.</p>
+<br>
+<p>Individual whistle classifications are grouped into user-defined <a href="rocca_Sidebar.html">Detection Numbers</a>.  A classification is also given to detection numbers based on the species within that group with the <a href="rocca_WhistleSchoolClassification.html">highest classification scores</a>. </p>
+<br>
+<h3>General Principle of Operation</h3>
+<p>There are 5 main steps to the classification of a whistle:</p>
+<ol>
+	<li>
+	  <p>User selects a whistle from the spectrogram display</p></li>
+	<li><p>The whistle is captured and displayed in a new spectrogram window</p></li>
+	<li><p>The whistle contour is extracted and the user is allowed to manipulate it, if desired</p></li>
+	<li><p>The contour parameters are measured</p></li>
+	<li><p>The contour is classified using the currently-loaded classifier model</p></li>
+	<li><p>The classified whistle statistics are added to the specified School/Detection/Sighting</p></li>
+</ol>
+
+<br>
+<p></p>
+<p CLASS="nextLink"><a href="rocca_Configure.html">Next:
+Configuring Rocca</a></p>
+
+<br><br><br>
+</body>
+</html>

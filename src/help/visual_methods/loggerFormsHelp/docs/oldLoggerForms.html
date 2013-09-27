@@ -1,0 +1,53 @@
+<html>
+<head>
+<LINK href="../../../pamHelpStylesheet.css" type=text/css rel=STYLESHEET>
+<title>Using old Logger 2000 UDF forms</title>
+</head>
+
+<body>
+
+<h1>Using old Logger 2000 UDF forms</h1>
+<p>Some users may wish to import UDF form definitions from databases used with the Logger 2000 software.</p>
+
+<p>For compatibility with a wider range of database systems, we have had to make a number of changes to the 
+format of the UDF_tables in PAMGuad. </p>
+
+<p>If you attempt to use an old Logger forms UDF table with PAMGUARD you are likely to get a number of errors. To correct these, you 
+will have to make the following changes to the UDF table. Please note that these changes may stop the table working with Logger 2000</p>
+
+<ol>
+<li>"Id" column: The PAMGuard forms must have a column titled Id of type AutoNumber, which should ideally also be set to be a primary key</li>
+<li>"Length" column has changed from Integer to Long Integer</li>
+<li>"NMEA String" column has changed to "NMEA_String"</li>
+<li>"NMEA Position" column has changed to "NMEA_Position and it's type has changed from Integer to Long Integer"</li>
+<li>"AutoUpdate" column has changed from Integer to Long Integer</li>
+<li>"ADC Channel" column has changed to "ADC_Channel"</li>
+<li>"ADC Gain" column has changed to "ADC_Gain"</li>
+<li>"Analog Multiply" column has changed to "Analog_Multiply"</li>
+<li>"Analog Add" column has changed to "Analog_Add"</li>
+<li>"Height" column has changed from Integer to Long Integer</li>
+<li>"Send Control Name" column has changed to "Send_Control_Name"</li>
+<li>"Control on Subform" column has changed to "Control_on_Subform"</li>
+<li>"Get Control Data" column has changed to "Get_Control_Data"</li>
+</ol>
+
+<h3>Features not implemented</h3>
+<p>There are also several Logger 2000 features which have not yet been implemented in PAMGuard</p>
+<ol>
+<li>Button Forms</li>
+<li>Buttons on normal forms</li>
+<li>Sub forms</li>
+<li>Analogue input</li>
+<li>Form Colour</li>
+<li>Hotkeys (to open sub tab forms</li>
+<li>NOTOFFLINE, NOTONLINE and NOTSHOWDATA</li>
+<li>FONT</li>
+</ol>
+
+<p>Subject to funding, we hope to add these features at some future date. </p> 
+
+
+
+
+</body>
+</html>

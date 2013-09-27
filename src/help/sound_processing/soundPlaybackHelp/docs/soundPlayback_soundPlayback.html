@@ -1,0 +1,50 @@
+<html>
+<head>
+<LINK href="../../../pamHelpStylesheet.css" type="text/css"
+	rel="STYLESHEET">
+<title>Sound Output Overview</title>
+</head>
+
+<body>
+
+<h1>Sound Output</h1>
+<h2>Overview</h2>
+
+<p>The sound output module can be used to play back sounds from
+PAMGUARD through a sound card or other data acquisition device.</p>
+
+<p>This allows you to aurally monitor sounds after they have been modified by PAMGUARD 
+modules such as <a href="../../FiltersHelp/Docs/filters_filters.html">IIRF Filters</a>
+or the <a href="../../seismicveto/docs/veto_overview.html">Seismic Veto</a></p>
+
+<p>The availability of the sound output function depends on the type of input
+selected in the <a href="../../AcquisitionHelp/docs/AcquisitionOverview.html">
+Sound Acquisition</a> module. </p>
+
+<p>With the exception of data read from file, 
+sound output must be through the same device as is being used for sound input so that there is
+perfect synchronisation between the clocks of the device being used for output and the device
+used for input. </p> 
+
+<p>The sound output module will currently work when analysing data from files of file folders, 
+from sound cards, ASIO sound cards and with simulated data. 
+It will not currently work with National Instruments DAQ cards. </p>
+
+<br>
+<h3>Creating sound output modules</h3>
+<p>From the <em><strong>F</strong></em><strong><em>ile>Add
+modules>Sound Processing </em></strong>menu, or from the pop-up menu on the data model
+display select "<strong><em>Sound Output</em></strong>". Enter a name
+for the new module and press Ok.</p>
+<p>Sound output modules can be inserted anywhere in the PAMGUARD
+data model where there are raw audio data such as the output of a <a
+	href="../../AcquisitionHelp/docs/AcquisitionOverview.html">sound
+acquisition module</a>, a <a
+	href="../../FiltersHelp/Docs/Filters_filters.html">filter module</a>, a
+<a href="../../decimatorHelp/docs/decimator_decimator.html">decimator</a>,
+etc.</p>
+<br>
+<br>
+<p CLASS="nextLink"><a href="soundPlayback_Config.html">Next: Sound Output Configuration</a></p>
+</body>
+</html>

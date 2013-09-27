@@ -1,0 +1,56 @@
+<html>
+<head>
+<LINK href="../../../pamHelpStylesheet.css" type=text/css rel=STYLESHEET>
+<title>Database</title>
+</head>
+
+<body>
+
+<h1>Database</h1>
+<h2>Overview</h2>
+<p>
+PAMGUARD stores data from many modules in a database. The database not only stores 
+detector output, but also detector configuration and settings so that it will effectively
+form a single document at the end of the cruise, detailing how PAMGUARD was set up
+and what was detected.   
+</p>
+<h3>Adding a database module</h3>
+<p>
+From the <strong><em>File>Add Modules>Utilities</em></strong> menu select <i>'Database'</i> to add a database to your
+configuration.</p>
+<h3>Configuring the database</h3>
+<p>PAMGUARD can use either MySQL, Microsoft Access or OpenOffice databases. The setup for each is slightly 
+different, but operation and integration into the rest of PAMGUARD is the same.</p>
+<p>Which you use is purely a matter of personal choice.</p> 
+<p>To configure the database, go to the <strong><em>File>Database Selection...</em></strong> menu to open the Database Selection dialog. 
+  At the top of the dialog, select either MySQL, Microsoft Access or OpenOffice from the drop down list. Then refer to specific
+  instructions for each database type below.
+  </p> 
+  <br>
+    <p><a href = "database_MySQL.html">Configure a MySQL database</a></p><br>
+    <p><a href = "database_msAccess.html">Configure a Microsoft Access database</a></p><br>
+    <p><a href = "database_OOo.html">Configure an OpenOffice database</a></p><br>
+  
+</p>
+<h3>Adding tables to the database</h3>
+<p>PAMGUARD will automatically add the necessary tables to your database.</p>
+<p>
+If a new detector module is added to PAMGUARD at any point, the database module is notified and will 
+add the additional tables required. </p><p>If a module is removed and a table is no longer needed, that
+table will be left in the database unaltered. </p>
+<p>Should the definition of a table change due to the new release of a module which 
+outputs additional information, any additional columns required will be automatically added
+to existing tables.</p>
+
+<h3>Other alterations</h3>
+<p>You may add other tables and queries to the database without affecting PAMGUARD operation.
+Additional tables will be ignored by PAMGUARD.</p>
+<p>You can even add additional columns to tables which are used by PAMGUARD and these additional
+columns will also be ignored.</p>
+<p>However,  you should not change the format of any existing columns and do not create relationships
+between tables which may not always be satisfied or PAMGUARD may be unable to write data to
+the database.</p> 
+
+<br><br><br>
+</body>
+</html>

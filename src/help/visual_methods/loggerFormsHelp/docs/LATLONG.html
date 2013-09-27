@@ -1,0 +1,130 @@
+<html>
+<head>
+<LINK href="../../../pamHelpStylesheet.css" type=text/css rel=STYLESHEET>
+<title>LATLONG Control</title>
+</head>
+
+<body>
+
+<h1>LATLONG Control</h1>
+
+<p>The LATLONG Type is used on a User Defined Form to create an input field for Latitude and Longitude data</p>
+
+<h3><u>Required Fields</u></h3>
+  
+<p><b>Order</b>
+ <p>The order in which the controls are read in by the program</p>
+<p><b>Title</b>
+<p>The text to be shown on the display</p>
+<p><b>Length</b></p>
+ <p>Length of the input field in characters</p>
+ 
+ 
+  
+<p></p> 
+<h3><u>Optional Fields</u></h3>
+  
+<p><strong>Topic</strong></p>
+  <p>The position the control will use on F1 or AutoUpdate. This uses a channel map where [blank] or 0 relate to the ships GPS position.</p>
+  <p>Numbers beyond this will average the position of the hydrophones indicated by the channel map. 1 will relate to the position of the 1st hydrophone, 2 to the 2nd, 3 to 1st & 2nd, 4 to the 3rd, 5 to 1st & 3rd and so on. See Table below for example </p>
+  <table border="1" bordercolor="#99FFFF" style="background-color:#FFFFFF; height: 219px; width: 396px"  cellpadding="0" cellspacing="0">
+	<tr>
+		<td>Hyd 3</td>
+		<td>Hyd 2</td>
+		<td>Hyd 1</td>
+		<td></td>
+		<td>Channel Map</td>
+	</tr>
+	<tr>
+		<td>0</td>
+		<td>0</td>
+		<td>1</td>
+		<td></td>
+		<td>1</td>
+		
+	</tr>
+	<tr>
+		<td>0</td>
+		<td>1</td>
+		<td>0</td>
+		<td></td>
+		<td>2</td>
+	</tr>
+	<tr>
+		<td>0</td>
+		<td>1</td>
+		<td>1</td>
+		<td></td>
+		<td>3</td>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>0</td>
+		<td>0</td>
+		<td></td>
+		<td>4</td>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>0</td>
+		<td>1</td>
+		<td></td>
+		<td>5</td>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>1</td>
+		<td>0</td>
+		<td></td>
+		<td>6</td>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td></td>
+		<td>7</td>
+	</tr>
+</table>
+
+
+  
+  
+<p><strong>Autoclear</strong></p>
+  <p>The control is automatically cleared when data is saved</p>
+<p><b>DbTitle</b></p>
+  <p>Column heading for the output database. (This will default to the Title if this field is not completed)</p>
+<p><b>Hint</b></p>
+  <p>Text for a hint to be displayed when entering data in the control</p>
+<p><b>PostTitle</b></p>
+  <p>Additional text to display after the input box.</p>
+<p><b>Required</b></p>
+  <p>Forces the user to fill in the input box before the form can be saved</p>
+  
+    <br></br>
+ <h3><u>Interactive Input</u></h3>
+<p>The value in the LatLong control can be edited in any of the following ways</p>
+<p><b>F1</b>
+<br>The name of the NMEA module from which data should be harvested</p>
+<p><b>F4 or right-click>Input Lat Long... </b>
+<br>Brings up a dialog with to input Latitude and Longitude</p>
+<p><b>right-click>Paste Lat Long from map</b>
+<br>Pastes the last position clicked on from the map(Disabled if the map has not been clicked on yet)</p>
+<p><b>right-click>Clear [ControlName]</b>
+<br>Clears the data in the control</p>    
+
+  <br></br>
+ <h3><u>NMEA Input</u></h3>
+<p><b>NMEA_Module</b>
+<p>The name of the NMEA module from which data should be harvested</p>
+<p><b>NMEA_String</b></p>
+<p>The name of the NMEA string containing the data</p>
+<p><b>NMEA_Position</b>
+<p>The position of the first (Latitude) data item in the NMEA string. Strings are comma separated, the 0'the item will be the string name, the 1'st item the one after that, etc. </p>
+ <p>Two numbers will in face be read from the NMEA string. It is assumed that Latitude is at the position given by 
+ NMEA_Position and that the next number in the NMEA string (i.e. NMEA_Position+1) is the Longitude. The latitude and 
+ longitude should be in decimal degrees. If conversion of either number fails, the values will be set to null. <br></p>
+
+ <br></br><p><a href="./designingForms.html">Back to form Design</a></p>
+</body>
+</html>

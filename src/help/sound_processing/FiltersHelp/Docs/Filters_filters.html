@@ -1,0 +1,79 @@
+<html>
+<head>
+<LINK href="../../../pamHelpStylesheet.css" type=text/css rel=STYLESHEET>
+<title>IIRF Filters</title>
+</head>
+
+<body>
+
+<h1>IIRF Filters</h1>
+<h2>Overview</h2><br>
+
+<p>
+IIRF (Infinite Impulse Response) Filters can be used to filter audio data within PAMGUARD  
+</p>
+<p>
+They can be inserted anywhere in the PAMGUARD data model where there are raw audio data.<br>
+Note that some other modules, such as the 
+<a href = "../../../detectors/clickDetectorHelp/docs/ClickDetector_clickDetector.html"> click detector</a> 
+and the <a href = "../../decimatorHelp/docs/decimator_decimator.html">decimator</a>, use the same
+filter modules, built into that module's functionality.</p>
+<br>
+<h3>Creating filters</h3>
+
+<p>
+From the <em><strong>File>Add modules>Sound Processing</strong></em> menu, or from the pop-up menu on the 
+data model display select "<em><strong>IIRF Filters</strong></em>". 
+Enter a name for the new filter modules (e.g. "Low Pass", "2kHz", etc) and press Ok.</p>
+<br>
+
+<h3>Data Source</h3>
+<p>The filers module requires a source of raw data before it can operate. 
+This may come directly from a Sound Acquisition module (e.g. a sound card or a National Instruments board) 
+or from processed data such as the output from a decimator or other filter. 
+</p>
+<p>
+To set the filter data source, go to the <em><strong>Detection>"your filter name">
+Filter Data Source"</strong></em> menu</p>
+<br>
+<img alt="Filters Data Source" src="Images/FiltersDataSource.png"/><br>
+<p>
+Select the data source and the channels you wish to filter from the checkboxes.
+</p> 
+
+<h3>Filter Settings</h3>
+<p>
+To configure the filter, open the Filter settings dialog from the <em><strong>Detection>"your filter name">
+Filter Settings"</strong></em> menu</p>
+<br>
+<img alt="Filters Settings" src="Images/FiltersSettings.png"/><br>
+<h4>Filter Type</h4>
+<p>
+Select the type of filter, which can be either Butterworth of Chebyshev. 
+</p>
+<p>
+Select High pass, Band Pass of Low Pass
+</p>
+
+<h4>Cut off Frequencies</h4>
+<p>
+Set the filter cut off frequencies. Note that these should be greater than 0 and less than half of the sample rate.
+</p> 
+
+<h4>Filter parameters</h4>
+<p>
+Set the filter order and the band pass ripple (band pass ripple applies to Chebyshev filters only).  
+</p> 
+<p>
+  Note that the higher the filter order, the sharper the filter cut off, but the 
+  higher the load on the processor. Generally 2nd order or 4th order filters are
+  adequate.</p>
+<h3>
+<p>Filter plots
+  </h4>
+<p>The filter dialog will display a bode plot (attenuation verses frequency) for the chosen filter
+parameters and also a 'pole-zero diagram' (which is only meaningful to real geeks). </p> 
+
+<br><br><br>
+</body>
+</html>

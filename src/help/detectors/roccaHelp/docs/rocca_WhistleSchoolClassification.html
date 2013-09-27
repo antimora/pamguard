@@ -1,0 +1,41 @@
+<html>
+<head>
+<LINK href="../../../pamHelpStylesheet.css" type="text/css"
+	rel="STYLESHEET">
+<style>
+	<!--
+	.tab { 
+	padding-left: 40px;
+	padding-right: 40px;
+	}
+	-->
+</style>
+<title>Rocca Whistle and School Classification</title>
+</head>
+
+<body>
+
+<h1>Rocca</h1>
+<h2>Whistle and School Classification</h2><br>
+<p>Rocca currently uses a Random Forest classifier model based on the open-source statistical software package <a href="http://www.cs.waikato.ac.nz/ml/weka/index.html">Weka</a>.  For more information on Random Forests and the WEKA package, the user is encouraged to refer to the book <a href="http://www.cs.waikato.ac.nz/ml/weka/book.html">Data Mining: Practical Machine Learning Tools and Techniques</a></p>
+<br><br>
+<h3>Whistle Classification</h3>
+<p>The following 54 parameters are measured for each whistle contour:</p>
+<p class="tab">minimum frequency, maximum frequency,  duration, beginning frequency, ending frequency, median frequency, center frequency, frequency range and relative bandwidth, mean and standard deviation of the frequency, mean and the standard deviation of the duty cycle, the frequency max/min ratio, the frequency beginning/ending ratio, the frequency at the 25th, 50th and 75th percentiles and the spread between the 75th and 25th percentiles, the mean duty cycles in the first, second, third and fourth quarters of the whistle, the coefficient of frequency modulation, the number of frequency steps up and down, the total number of steps, the mean slope, the mean absolute slope, the mean positive and negative slopes, the ratio of mean positive slope to mean negative slope, the slope (up/down/flat) at the beginning and ending of the contour, positive and negative boolean parameters describing the slope at the beginning and ending of the contour, the percentage of upsweeps, downsweeps and no sweeps (flat), the number of sweep patterns (up-down, down-up, up-flat, down-flat, flat-up, flat-down), the number of inflection points, the shortest and longest times between inflection points and the ratio of longest to shortest,  the mean and standard deviation of the time between inflection points, and the median time between inflection points.</p>
+<p>The random forest classifier is created based on a subset of these parameters.  During whistle classification, the parameters from the whistle contour are dropped down the random forest model and each possible species is assigned a percentage of the votes.  The whistle is classified as the species with the highest percentage of votes, unless that percentage falls below the whistle threshold (as specified in the <a href="rocca_Configure.html#rocca_ParamsClassifier">Rocca Parameters window</a>).  In that instance, the whistle is classified as Ambiguous.</p>
+<br><br>
+<h3><a name="SchoolClassification">School Classification</a></h3>
+<p>Each <a href="rocca_Sidebar.html">detection number</a> holds a list of possible species based on the classifier model used.  There are two values stored for each species: the number of times a whistle has been classified to that species (displayed), and a cumulative total of all the percentage tree votes for the species (not displayed).  So when a new whistle classification is saved to a detection number, the count of the classified species is increased by one and the percentage tree votes for each species are added to the corresponding cumulative totals.</p>
+<p>The detection is classified as the species with the highest cumulative percentage of votes.  Note that this may be different than the species most often classified &#45; the value shown in the sidebar species list.  If the highest cumulative percentage falls below the school threshold (as specified in the <a href="rocca_Configure.html#rocca_ParamsClassifier">Rocca Parameters window</a>), the detection is classified as Ambiguous.</p>
+
+
+
+<br><br>
+<p></p>
+<p CLASS="prevLink"><a href="rocca_ContourExtractionManipulation.html">Previous:
+Contour Extraction / Manipulation</a></p>
+<p CLASS="nextLink"><a href="rocca_Sidebar.html">Next:
+Rocca Sidebar</a></p>
+<br><br><br>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+<head>
+<LINK href="../../../pamHelpStylesheet.css" type="text/css"
+	rel="STYLESHEET">
+<title>Rocca Sidebar</title>
+</head>
+
+<body>
+
+<h1>Rocca</h1>
+<h2>Rocca Sidebar</h2><br>
+<p>Rocca assembles the results of individual whistle classifications into groups as defined by the user.  Each group must be given a name, the <strong>Detection Number</strong>.  In addition to individual whistle classifications, Rocca will also classify the Detection Number to species.  This School Classification is determined by summing the individual classification stats for each species within that Detection Number and selecting the species with the highest total.</p>
+<br>
+<img alt="" src="images/sidebar.png">
+<br>
+<ol>
+	<li><p>Detection number: the current detection number.  This is the detection number used when a whistle is selected from the spectrogram display.</p></li>
+	<li><p>Scroll buttons: scroll through the list of detection numbers.</p></li>
+	<li><p>Classification results: the individual classification tally for the current detection number.  The list of possible species is based on the classifier model currently loaded.  The number beside the species name indicates the number of whistles <a href="rocca_WhistleSchoolClassification.html">classified</a> to that species.</p></li>
+	<li><p>School classification: the overall species <a href="rocca_WhistleSchoolClassification.html#SchoolClassification">classification</a> for the current detection number.</p></li>
+	<li>
+	  <p>Rename Detection: renames the current detection.  Any output files previously saved that use the old detection number in the filename will be renamed with the new detection number.  Note that the information <em>in</em> the <a href="rocca_SavedFiles.html#contour">whistle contour stats save file</a> is NOT updated - the user must modify any references to the old detection number manually.  Also note that the user will not be allowed to duplicate detection numbers</p></li>
+	<li><p><a name="SaveNow">Save Detection</a>: overwrites the current School Stats file (as defined in the <a href="rocca_Configure.html#rocca_ParamsOutput">Rocca Parameters window</a>) with the current list of detections and statistics.  School statistics are also automatically saved every 5 minutes.</p></li>
+	<li><p>New Detection: create a new detection number</p></li>
+	<li><p>Whistle Start: lists the time and frequency of the first user-selected point on the spectrogram</p></li>
+	<li><p>Whistle End: lists the time and frequency of the second user-selected point on the spectrogram.  Note that once the second point is selected, the portion of the spectrogram is captured in a new <a href="rocca_Spectrogram.html">popup</a> window.</p></li>
+</ol>
+
+
+<br><br>
+<p></p>
+<p CLASS="prevLink"><a href="rocca_WhistleSchoolClassification.html">Previous:
+Whistle and School Classification</a></p>
+<p CLASS="nextLink"><a href="rocca_SavedFiles.html">Next:
+Saved Files</a></p>
+<br><br><br>
+</body>
+</html>
