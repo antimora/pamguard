@@ -50,4 +50,4 @@ We may occasionally only release a new jar file. In this case if you're on Windo
 
 License 
 =======
-PAMGUARD is free software, and you are welcome to redistribute and modify it under the terms of the GNU General Public License (either version 2 or any later version).
+PAMGUARD is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
