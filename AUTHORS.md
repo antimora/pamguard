@@ -6,7 +6,7 @@ PAMGUARD is written by Dr [Douglas Gillespie](http://biology.st-andrews.ac.uk/co
 * Aaron Thode
 * Brian Miller
 * Clint Blight
-* [Colin Mummery](www.kagi.com/equitysoft)
+* [Colin Mummery](https://www.kagi.com/equitysoft)
 * Dave Flogeras
 * Dave Mellinger
 * David J McLaren
