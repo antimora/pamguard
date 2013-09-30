@@ -1,3 +1,8 @@
+PAMGUARD
+========
+
+[![Build Status](https://travis-ci.org/antimora/pamguard.png?branch=develop)](https://travis-ci.org/antimora/pamguard)
+
 About
 =====
 
@@ -9,7 +14,7 @@ The [PAMGUARD](http://www.pamguard.org/) project develops software to help detec
 
 Installation
 ============
-The installation procedure that you need to follow depends on the distribution you have downloaded. However, you will definitely need: A Java Virtual Machine (JVM). For the stable and Beta versions of PAMGUARD you will need to be using version 1.6.0 or higher of Java, downloadable at http://www.oracle.com/technetwork/java/javase/downloads/index.html.
+The installation procedure that you need to follow depends on the distribution you have downloaded. However, you will definitely need: A Java Virtual Machine (JVM). For the stable and Beta versions of PAMGUARD you will need to be using version 1.7.0 or higher of Java, downloadable at http://www.oracle.com/technetwork/java/javase/downloads/index.html.
 
 In order to run the binaries, you need to install only the Java Runtime Environment (JRE). If you are going to compile source files as well, you may prefer to install the Java Development Kit (JDK). Installing any version of JDK also installs the corresponding version of JRE. N.B. For this 1.6 release of Pamguard anyone using a 64 bit version of Windows will still only get full functionality if there is a 32 bit version of  Java installed on that 64 bit machine. The *.exe launcher files will check when starting PAMGUARD as to whether a suitable 32 bit JVM is installed and if not then direct the user to the Java website so one can be downloaded.
 
