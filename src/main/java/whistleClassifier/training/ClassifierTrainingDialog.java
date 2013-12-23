@@ -44,9 +44,14 @@ import whistleClassifier.WhistleClassifierControl;
 import Jama.Matrix;
 import PamUtils.FolderChangeListener;
 import PamUtils.PamCalendar;
+import PamUtils.PamFileFilter;
 import PamUtils.SelectFolder;
 import PamView.PamDialog;
 import PamView.PamGridBagContraints;
+import java.io.File;
+import javax.swing.JFileChooser;
+
+import static whistleClassifier.WhistleClassifierControl.classifierFileEnd;
 
 public class ClassifierTrainingDialog extends PamDialog implements TrainingObserver {
 
@@ -56,12 +61,12 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 
 	private static ClassifierTrainingDialog singleInstance;
 
-	private WhistleClassifierControl whistleClassifierControl; 
+	private WhistleClassifierControl whistleClassifierControl;
 
 	private SelectFolder selectFolder;
 
 	private JCheckBox useFolderNames, dumpTextFile;
-	
+
 	private DataSelectPanel dataSelectPanel;
 
 	private DataViewPanel dataViewPanel;
@@ -102,7 +107,7 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 		p.add(BorderLayout.SOUTH, progressPanel = new ProgressPanel());
 
 		setDialogComponent(p);
-		
+
 		setResizable(true);
 
 		setHelpPoint("detectors.whistleClassifierHelp.docs.whistleClassifier_Training");
@@ -129,7 +134,7 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 			trainingProgressMessage(trainingProgress.message);
 			return;
 		}
-		
+
 		trainingStatus = trainingProgress.status;
 		switch (trainingStatus) {
 		case ClassifierTrainingProgress.START_ALL:
@@ -137,7 +142,7 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 			break;
 		case ClassifierTrainingProgress.START_ONE:
 			isRunning = true;
-			runTrainingPanel.addMessage(String.format("Starting Bootstrap %d", 
+			runTrainingPanel.addMessage(String.format("Starting Bootstrap %d",
 					trainingProgress.completedBootstraps+1));
 			break;
 		case ClassifierTrainingProgress.COMPLETE_ALL:
@@ -181,7 +186,7 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 
 	/**
 	 * Thread class to read in data from lots of files in the user
-	 * selected directory. 
+	 * selected directory.
 	 * @author Doug
 	 *
 	 */
@@ -192,16 +197,16 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 		}
 	}
 	/**
-	 * Creates the training store. 
-	 * <p>Reads all the contours from the files in the selected folder and sub folders. 
-	 * <p> Ideally, this 
-	 * should only ever be run from inside the CreateTraining thread. 
+	 * Creates the training store.
+	 * <p>Reads all the contours from the files in the selected folder and sub folders.
+	 * <p> Ideally, this
+	 * should only ever be run from inside the CreateTraining thread.
 	 */
 	private void createTrainingStore() {
 		creating = true;
 		enableControls();
 		trainingDataCollection = new TrainingDataCollection(whistleClassifierControl);
-		trainingDataCollection.loadTrainingData(whistleClassificationParameters, 
+		trainingDataCollection.loadTrainingData(whistleClassificationParameters,
 				selectFolder.isIncludeSubFolders(), useFolderNames.isSelected(), progressPanel);
 		trainingDataCollection.dumpStoreContent();
 		if (dataViewPanel != null) {
@@ -288,7 +293,7 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 
 	public boolean startBatchBootstrap(int fragmentLength, int sectionLength,
 			double minProbability) {
-		// force these parameters into the dialog, then start as normal. 
+		// force these parameters into the dialog, then start as normal.
 		runTrainingPanel.setBootstrapParams(fragmentLength, sectionLength, minProbability);
 		if (runTrainingPanel.getParams() == false) {
 			return false;
@@ -310,7 +315,7 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 		progressPanel.setProgressLimits(0, fragmentClassifierParams.getNBootstrap());
 		progressPanel.setProgress(0);
 		progressPanel.setText("Running training bootstrap");
-		
+
 		whistleClassifierControl.setFragmentClassifier(ClassifierTypes.createClassifier(fragmentClassifierParams.getClassifierType()));
 		whistleClassifierControl.getWhistleFragmenter().setFragmentLength(fragmentClassifierParams.getFragmentLength());
 		//		whistleClassifierControl.getWhistle
@@ -328,7 +333,7 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 		runTrainingPanel.addMessage("**  STOP AFTER CURRENT BOOTSTRAP ***");
 		runTrainingPanel.addMessage("************************************");
 	}
-	
+
 	private void setClassifierOptions() {
 		Classifier classifier = whistleClassifierControl.getFragmentClassifier();
 		if (classifier == null || classifier.hasParamsDialog() == false) {
@@ -336,7 +341,7 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 		}
 		classifier.showParamsDialog(this);
 	}
-	
+
 	private void batchTraining() {
 		if (runTrainingPanel.getParams() == false) {
 			return;
@@ -346,13 +351,13 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 		}
 		batchTrainingDialog = new BatchTrainingDialog(this, this, fragmentClassifierParams);
 		batchTrainingDialog.setVisible(true);
-		
+
 		batchTrainingDialog = null;
 	}
 
 	/**
 	 * An export function which saves the classifier settings
-	 * separately from the main PAMGUARD settings file data.  
+	 * separately from the main PAMGUARD settings file data.
 	 */
 	private void saveSettings() {
 		if (getParams() == false) {
@@ -368,7 +373,31 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 
 
 	/**
-	 * Copy the mean and std confusion matrices to the clipboard. 
+	 * An export function which saves the classifier settings
+	 * separately from the main PAMGUARD settings file data.
+	 */
+	private void exportTrainingData() {
+
+		if ( trainingDataCollection.getNumTrainingGroups() == 0) {
+			showWarning("No training data to export");
+			return;
+		}
+
+
+		JFileChooser jFileChooser = new JFileChooser();
+		jFileChooser.setApproveButtonText("Select");
+                jFileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+		int state = jFileChooser.showSaveDialog(frame);
+
+		File directory = jFileChooser.getSelectedFile();
+
+                trainingDataCollection.exportData(directory);
+	}
+
+
+	/**
+	 * Copy the mean and std confusion matrices to the clipboard.
 	 */
 	private void copyConfusion() {
 		Matrix meanConfusion = classifierTrainer.getMeanConfusion();
@@ -377,12 +406,12 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 		}
 		JTextField tempField = new JTextField();
 		String str = "Mean Confusion Matrix\r\n";
-		str += PamMatrix.matrixToString(meanConfusion, "%5.4f", "\t", 
+		str += PamMatrix.matrixToString(meanConfusion, "%5.4f", "\t",
 				trainingDataCollection.getSpeciesList(), trainingDataCollection.getSpeciesList(), false);
 		Matrix stdConfusion = classifierTrainer.getSTDConfusion();
 		if (stdConfusion != null) {
 			str += "STD Confusion Matrix\r\n";
-			str += PamMatrix.matrixToString(stdConfusion, "%5.5f", "\t", 
+			str += PamMatrix.matrixToString(stdConfusion, "%5.5f", "\t",
 					trainingDataCollection.getSpeciesList(), trainingDataCollection.getSpeciesList(), false);
 		}
 		tempField.setText(str);
@@ -405,8 +434,8 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 	}
 
 	/**
-	 * Sub selection of training data based on min contour length and 
-	 * frequency range. 
+	 * Sub selection of training data based on min contour length and
+	 * frequency range.
 	 */
 	class DataSelectPanel extends JPanel {
 
@@ -438,7 +467,7 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 			c.gridx++;
 			addComponent(this, defaultButton = new JButton("default"), c);
 			defaultButton.addActionListener(new DefaultFreqs());
-			
+
 			c.gridx = 0;
 			c.gridy++;
 			addComponent(this, new JLabel(" Require minimum contour length of "), c);
@@ -447,7 +476,7 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 			c.gridx++;
 			c.gridwidth = 2;
 			addComponent(this, new JLabel(" bins"), c);
-			
+
 
 		}
 		class DefaultFreqs implements ActionListener {
@@ -478,8 +507,8 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 			else {
 				defaultFreqs();
 			}
-			
-			minContourLength.setText(String.format("%d", 
+
+			minContourLength.setText(String.format("%d",
 					fragmentClassifierParams.minimumContourLength));
 		}
 
@@ -490,8 +519,8 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 					f[i] = Double.valueOf(freqRange[i].getText());
 				}
 				fragmentClassifierParams.setFrequencyRange(f);
-				
-				fragmentClassifierParams.minimumContourLength = 
+
+				fragmentClassifierParams.minimumContourLength =
 					Integer.valueOf(minContourLength.getText());
 			}
 			catch (NumberFormatException e) {
@@ -500,7 +529,7 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 			return true;
 		}
 
-		void enableControls() {			
+		void enableControls() {
 			boolean b = creating == false && isRunning == false;
 			defaultButton.setEnabled(b);
 			freqRange[0].setEnabled(b);
@@ -509,7 +538,7 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 	}
 
 	/**
-	 * Show all the data, listed by species in a treeview. 
+	 * Show all the data, listed by species in a treeview.
 	 */
 	class DataViewPanel extends JPanel {
 
@@ -627,7 +656,7 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 		}
 	}
 
-	//	class DataTreeModel extends 
+	//	class DataTreeModel extends
 
 
 	class FolderChanged implements FolderChangeListener {
@@ -650,7 +679,7 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 
 	class RunTrainingPanel extends JPanel {
 
-		private JButton start, stop, save;
+		private JButton start, stop, save, dataExport;
 		private JTextArea textArea;
 		private JScrollPane scrollPane;
 		private JTextField fragmentLength, sectionLength, nBoots;
@@ -666,7 +695,9 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 			JPanel toptopPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			toptopPanel.add(start = new JButton("Start Training"));
 			toptopPanel.add(stop = new JButton("Stop"));
-			toptopPanel.add(save = new JButton("Export..."));
+			toptopPanel.add(save = new JButton("Save ..."));
+                        toptopPanel.add(dataExport = new JButton("Export Data..."));
+
 			toptopPanel.add(dumpTextFile = new JCheckBox("Create text output"));
 			dumpTextFile.setToolTipText("Dump bootstrap output to a text file");
 			//			toptopPanel.add(copy = new JButton("Copy Confusion"));
@@ -691,7 +722,7 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 			addComponent(optPanel, new JLabel("Fragment length (FFT's) "), c);
 			c.gridx++;
 			addComponent(optPanel, fragmentLength = new JTextField(5), c);
-			
+
 			c.gridx++;
 			c.gridheight = 3;
 			c.gridwidth = 4;
@@ -730,7 +761,8 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 			this.add(BorderLayout.NORTH, topPanel);
 			start.addActionListener(new StartTraining());
 			stop.addActionListener(new StopTraining());
-			save.addActionListener(new SaveTraining());
+                        save.addActionListener(new SaveTraining());
+                        dataExport.addActionListener(new ExportTrainingData());
 			//			copy.addActionListener(new CopyConfusion());
 
 			for (int i = 0; i < ClassifierTypes.getNumClassifiers(); i++) {
@@ -824,7 +856,15 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 				saveSettings();
 			}
 		}
-		class CopyAll implements ActionListener {
+
+		class ExportTrainingData implements ActionListener {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				exportTrainingData();
+			}
+		}
+
+                class CopyAll implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				copyAll();
@@ -898,6 +938,7 @@ public class ClassifierTrainingDialog extends PamDialog implements TrainingObser
 			start.setEnabled(creating == false && isRunning == false);
 			stop.setEnabled(creating == false && isRunning);
 			save.setEnabled(creating == false && needsSave);
+                        dataExport.setEnabled(creating == false && isRunning == false && trainingDataCollection!=null);
 			dumpTextFile.setEnabled(creating == false && isRunning == false);
 			//			copy.setEnabled(creating == false && needsSave);
 			boolean b = creating == false && isRunning == false;
