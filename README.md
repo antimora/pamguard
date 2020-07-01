@@ -1,3 +1,6 @@
+UPDATE: The build is broken because of JVM version upgrade. See issue [#5](https://github.com/antimora/pamguard/issues/5).
+
+
 PAMGUARD
 ========
 
